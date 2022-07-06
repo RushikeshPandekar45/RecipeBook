@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import RecipeContext from '../context/RecipeContext';
-export default function Navbar() {
+export default function Navbar(props) {
     const context = useContext(RecipeContext);
     const {setSearchVal}=context;
     const Location=useLocation();
@@ -9,6 +9,7 @@ export default function Navbar() {
     const signout=(e)=>{
         localStorage.removeItem('token');
         navigate('/',{replace:true});
+        props.giveAlert("success","User SignedOut Successfully");
     }
     const searchSubmit=(e)=>{
         e.preventDefault();

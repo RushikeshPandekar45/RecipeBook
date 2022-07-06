@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 import RecipeItem from './RecipeItem';
 
-export default function YourRecipes() {
+export default function YourRecipes(props) {
     const context = useContext(RecipeContext);
     const {yourrecipes,getYourRecipes,userName,userID,getUserDetails,searchVal}=context;
     useEffect(() => {
@@ -11,7 +11,6 @@ export default function YourRecipes() {
        getUserDetails();
        // eslint-disable-next-line
     }, [])
-    
   return (
     <div className="container d-flex flex-column justify-content-center mt-2">
         <Link to="/account" className="btn btn-secondary" data-bs-container="body">
@@ -21,7 +20,7 @@ export default function YourRecipes() {
         <div className='row'>
             {
                 yourrecipes.map((ele,ind)=>{
-                    return ele.title.toLowerCase().includes(searchVal.toLowerCase()) && <RecipeItem Recipe={ele} readersID={userID} key={ind}/>
+                    return ele.title.toLowerCase().includes(searchVal.toLowerCase()) && <RecipeItem Recipe={ele} readersID={userID} key={ind} giveAlert={props.giveAlert}/>
                 })
             }
         </div>

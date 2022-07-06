@@ -10,7 +10,7 @@ export default function RecipeState(props) {
     const [addrecipe, setAddrecipe] = useState({title:"",ingredients:[],procedure:"",imageUrl:""})
     const [btn, setBtn] = useState(["Add",""]);
     const [searchVal, setSearchVal] = useState("");
-
+    
     //get All Recipes
     const getAllRecipes=async()=>{
         const response = await fetch("http://localhost:5000/api/recipes/getallrecipes", {
@@ -55,7 +55,6 @@ export default function RecipeState(props) {
           }
         });
         const data=await response.json();
-        console.log("a");
         setUserID(data._id);
         setUserName(data.name);
       }

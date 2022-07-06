@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import RecipeContext from '../context/RecipeContext';
 import Recipes from './Recipes'
 
-export default function Home() {
+export default function Home(props) {
   const context = useContext(RecipeContext);
   const {getAllRecipes}=context;
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function Home() {
     <div className='container my-2'>
         <h1>Recipes</h1>
         <hr />
-        <Recipes/>
+        <Recipes giveAlert={props.giveAlert}/>
     </div>
   )
 }

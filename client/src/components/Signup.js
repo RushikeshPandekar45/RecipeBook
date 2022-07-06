@@ -18,13 +18,14 @@ export default function Signup(props) {
             if(res.success){
                 localStorage.setItem("token",res.token);
                 navigate("/", { replace: true });
+                props.giveAlert("success","User SignedUp Successfully");
             }
             else{
-                alert("Invalid Credentials");
+                props.giveAlert("danger","Invalid Credentials");
             }
         }
         else{
-            window.alert("passwords not matching")
+            props.giveAlert("danger","Confirmed Password is not matching");
         }
     }
     const onChangeHandeler=(e)=>{

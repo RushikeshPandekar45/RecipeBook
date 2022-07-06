@@ -17,7 +17,8 @@ export default function RecipeItem(props) {
     navigate("/detailedRecipe",{replace:false});
   }
   const onClickdelHandeler=()=>{
-      DeleteRecipe(props.Recipe._id);
+        DeleteRecipe(props.Recipe._id);
+        props.giveAlert("success","Recipe Deleted Successfully");
   }
   const onClickeditHandeler=()=>{
       setAddrecipe({title:props.Recipe.title,ingredients:props.Recipe.ingredients,procedure:props.Recipe.procedure,imageUrl:props.Recipe.imageUrl})
@@ -33,8 +34,8 @@ export default function RecipeItem(props) {
                 <p className='text-muted m-0'>{(new Date(props.Recipe.date)).toDateString()} By {props.Recipe.username}</p>
             </div>
             <hr className='mt-0 mb-0'/>
-              {props.readersID===props.Recipe.userId ? <div className='d-flex align-items-center justify-content-around p-2'><i class={`fa-${like} fa-thumbs-up fa-2xl`} onClick={()=>{setLike(like==="solid"?"regular":"solid")}}></i><i class={`fa-${save} fa-bookmark fa-xl`} onClick={()=>{setSave(save==="solid"?"regular":"solid")}}></i><i className="fa-solid fa-trash-can mx-2 fa-lg" onClick={onClickdelHandeler}></i>
-                <Link to='/addrecipe'><i className="fa-solid fa-file-pen mx-2 fa-lg" onClick={onClickeditHandeler}></i></Link></div>:<div className='d-flex align-items-center justify-content-around p-3'><i class={`fa-${like} fa-thumbs-up fa-2xl`} onClick={()=>{setLike(like==="solid"?"regular":"solid")}}></i><i class={`fa-${save} fa-bookmark fa-xl`} onClick={()=>{setSave(save==="solid"?"regular":"solid")}}></i></div>}
+              {props.readersID===props.Recipe.userId ? <div className='d-flex align-items-center justify-content-around p-2'><i className={`fa-${like} fa-thumbs-up fa-2xl`} onClick={()=>{setLike(like==="solid"?"regular":"solid")}}></i><i className={`fa-${save} fa-bookmark fa-xl`} onClick={()=>{setSave(save==="solid"?"regular":"solid")}}></i><i className="fa-solid fa-trash-can mx-2 fa-lg" onClick={onClickdelHandeler}></i>
+                <Link to='/addrecipe'><i className="fa-solid fa-file-pen mx-2 fa-lg" onClick={onClickeditHandeler}></i></Link></div>:<div className='d-flex align-items-center justify-content-around p-3'><i className={`fa-${like} fa-thumbs-up fa-2xl`} onClick={()=>{setLike(like==="solid"?"regular":"solid")}}></i><i className={`fa-${save} fa-bookmark fa-xl`} onClick={()=>{setSave(save==="solid"?"regular":"solid")}}></i></div>}
         </div>
     </div>
   )

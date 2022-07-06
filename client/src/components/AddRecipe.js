@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 
-export default function AddRecipe() {
+export default function AddRecipe(props) {
   const context = useContext(RecipeContext);
   const {addrecipe,setAddrecipe,addNewRecipe,btn,setBtn,UpdateRecipe}=context;
   const naviagate=useNavigate();
@@ -27,12 +27,14 @@ export default function AddRecipe() {
       addNewRecipe(addrecipe.title,addrecipe.ingredients,addrecipe.procedure,addrecipe.imageUrl);
       setAddrecipe({title:"",ingredients:[],procedure:"",imageUrl:""});
       naviagate('/yourrecipes',{replace:false})
+      props.giveAlert("success","Recipe Added Successfully")
     }
     else{
       UpdateRecipe(btn[1],addrecipe.title,addrecipe.ingredients,addrecipe.procedure,addrecipe.imageUrl);
       setAddrecipe({title:"",ingredients:[],procedure:"",imageUrl:""});
       setBtn(["Add",""]);
       naviagate('/yourrecipes',{replace:false})
+      props.giveAlert("success","Recipe Updated Successfully")
     }
   }
   const onClickCancel=()=>{
